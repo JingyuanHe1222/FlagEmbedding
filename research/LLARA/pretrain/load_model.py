@@ -3,7 +3,7 @@ from transformers import AutoConfig, AutoModelForCausalLM
 from peft import LoraConfig, TaskType, get_peft_model
 from modeling import PreLlamaModel
 
-def get_model(model_args, use_gradient_checkpointing: bool = False):
+def get_model(model_args, use_gradient_checkpointing=False, item_only=False):
     if model_args.config_name:
         config = AutoConfig.from_pretrained(model_args.config_name,
                                             token=model_args.token,
@@ -22,6 +22,7 @@ def get_model(model_args, use_gradient_checkpointing: bool = False):
         config.use_cache = False
 
     if model_args.model_name_or_path:
+        print(f"Loading from pretrained model_name_or_path: {model_args.model_name_or_path}")
         model = PreLlamaModel.from_pretrained(
             model_args.model_name_or_path,
             use_flash_attention_2=True if model_args.use_flash_attn else False,
@@ -30,6 +31,7 @@ def get_model(model_args, use_gradient_checkpointing: bool = False):
             cache_dir=model_args.cache_dir,
             from_tf=bool(".ckpt" in model_args.model_name_or_path),
             config=config,
+            item_only=item_only, 
         )
     else:
         print("Training new model from scratch")

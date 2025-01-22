@@ -1,0 +1,6 @@
+TinyLlama: 
+Recall@1：0.0010, Recall@10:0.0110, NDCG@10:0.0010
+
+
+User 8 token pretrained: 
+Recall@1：0.0080, Recall@10:0.0350, NDCG@10:0.0080

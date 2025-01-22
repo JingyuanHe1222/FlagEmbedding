@@ -3,14 +3,19 @@ import os
 import sys
 from pathlib import Path
 
+import datasets
+from torch.utils.data import DataLoader, RandomSampler, SequentialSampler
+
 import torch
 import transformers
 
 from transformers import AutoTokenizer, HfArgumentParser, set_seed, AutoConfig, Trainer
 
+from custom_trainer import CustomTrainer
+
 from arguments import ModelArguments, DataArguments, \
     PretrainTrainingArguments as TrainingArguments
-from data import TrainDatasetForEmbedding, EmbedCollator
+from data import TrainDatasetForEmbedding, EmbedCollator, TrainItemEBAEDatasetForEmbedding, ItemEBAEEmbedCollator
 from load_model import get_model
 from modeling import PreModel
 from trainer import PreTrainer
@@ -65,7 +70,34 @@ def main():
     )
     logger.info('Config: %s', config)
 
-    model = get_model(model_args, training_args.gradient_checkpointing)
+    # dataset = datasets.load_dataset("json", data_files=data_args.train_data, split='train',
+    #                                              cache_dir=data_args.cache_path)
+    if "10BT" in data_args.train_data: 
+        logger.info("fineweb...")
+        dataset = datasets.load_dataset(data_args.train_data, split='train') 
+        dataset = dataset.train_test_split(0.0035)['test'] # (5.5m tokens if truncated to 128)
+        dataset = dataset.map(lambda x: {'input': x['text'], 'output_summarize': x['text']}, remove_columns=dataset.column_names)
+    else: 
+        dataset = datasets.load_dataset("json", data_files=data_args.train_data, split='train',
+                                                    cache_dir=data_args.cache_path) # (5.8m tokens if truncated to 128)
+
+    # item EBAE or user both task 
+    if len(dataset.features.keys()) == 2: 
+        item_only = True       
+        print("item only summarization task...")
+        DatasetObject = TrainItemEBAEDatasetForEmbedding
+        CollatorObject = ItemEBAEEmbedCollator
+    else: 
+        item_only = False 
+        print("both task... ")
+        DatasetObject = TrainDatasetForEmbedding
+        CollatorObject = EmbedCollator
+
+
+    # split train and test set for in-training eval 
+    dataset = dataset.train_test_split(test_size=0.05, seed=42)
+
+    model = get_model(model_args, training_args.gradient_checkpointing, item_only)
 
     tokenizer = AutoTokenizer.from_pretrained(
         # model_args.tokenizer_name if model_args.tokenizer_name else model_args.model_name_or_path,
@@ -77,15 +109,14 @@ def main():
 
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.unk_token
-    # special_tokens_dict = {'additional_special_tokens': ['<s1>', '<s2>', '<s3>', '<s4>',
-    #                                                      '<s5>', '<s6>', '<s7>', '<s8>',
-    #                                                      '<s9>', '<s10>', '<s11>', '<s12>',
-    #                                                      '<s13>', '<s14>', '<s15>', '<s16>', ]}
-    # tokenizer.add_special_tokens(special_tokens_dict)
+        
     tokenizer.padding_side = "left"  # Allow batched inference
     print(tokenizer)
 
-    special_tokens = ['<s1>', '<s2>', '<s3>', '<s4>',
+    if item_only: 
+        special_tokens = ['<unk>']
+    else: 
+        special_tokens = ['<s1>', '<s2>', '<s3>', '<s4>',
                       '<s5>', '<s6>', '<s7>', '<s8>',
                       '<s9>', '<s10>', '<s11>', '<s12>',
                       '<s13>', '<s14>', '<s15>', '<s16>', ]
@@ -96,23 +127,29 @@ def main():
         tokenizer.add_special_tokens(special_tokens_dict)
         model.resize_token_embeddings(len(tokenizer))
     print(tokenizer)
+    
+    train_dataset = DatasetObject(dataset["train"], tokenizer, data_args)
+    eval_dataset = DatasetObject(dataset["test"], tokenizer, data_args)
 
-    if training_args.gradient_checkpointing:
-        model.enable_input_require_grads()
-
-    train_dataset = TrainDatasetForEmbedding(tokenizer, args=data_args)
-
-    trainer = Trainer(
-        model=model,
-        train_dataset=train_dataset,
-        args=training_args,
-        data_collator=EmbedCollator(
+    data_collator = CollatorObject(
             tokenizer=tokenizer,
             cutoff_len=data_args.cutoff_len,
             pad_to_multiple_of=8,
             return_tensors="pt",
             padding=True
-        )
+    )
+
+    if training_args.gradient_checkpointing:
+        model.enable_input_require_grads()
+    
+    trainer = CustomTrainer(
+        model=model,
+        train_dataset=train_dataset,
+        eval_dataset=eval_dataset,
+        # train_dataloader=train_loader,
+        # eval_dataloader=eval_loader,
+        args=training_args,
+        data_collator=data_collator, 
     )
 
     Path(training_args.output_dir).mkdir(parents=True, exist_ok=True)

@@ -1,6 +1,8 @@
 import sys
 from typing import Optional, List, Union, Tuple
 
+from custom_trainer import CustomCausalLMOutputWithPast
+
 import torch
 import copy
 from torch import nn
@@ -19,6 +21,10 @@ logger = logging.get_logger(__name__)
 
 class NewLlamaModel(LlamaModel):
     add_start_docstrings_to_model_forward(LLAMA_INPUTS_DOCSTRING)
+    def __init__(self, config, item_only):
+        super().__init__(config)
+        self.item_only = item_only 
+        print(f"item only set to {self.item_only}")
 
     def forward(
             self,
@@ -70,15 +76,26 @@ class NewLlamaModel(LlamaModel):
                 past_seen_tokens, past_seen_tokens + inputs_embeds.shape[1], device=inputs_embeds.device
             )
 
-        summarize_suffix_ids = [9162, 19138, 675, 278, 2038, 13382, 2629, 9475, 3838, 29901, 29871,
-                                32008, 32011, 32004, 32013, 32007, 32005, 32002, 32014]
-        predict_suffix_ids = [9162, 8500, 278, 1494, 13382, 2629, 9475, 3838, 29901, 29871, 32000,
-                              32009, 32012, 32001, 32010, 32003, 32006, 32015]
+        # summarize_suffix_ids = [9162, 19138, 675, 278, 2038, 13382, 2629, 9475, 3838, 29901, 29871,
+        #                         32008, 32011, 32004, 32013, 32007, 32005, 32002, 32014]
+        # predict_suffix_ids = [9162, 8500, 278, 1494, 13382, 2629, 9475, 3838, 29901, 29871, 32000,
+        #                       32009, 32012, 32001, 32010, 32003, 32006, 32015]
+        
+        summarize_suffix_ids = [9162, 27122, 278, 2038, 2944, 5665, 964, 8297, 29881, 886, 29901, 29871, 0]
+        predict_suffix_ids = [9162,  8500, 278, 2446, 2944, 23655, 29901, 29871, 0]
+        
+        if self.item_only: 
+            summarize_suffix_ids = [9162, 1346, 510, 2139, 278, 1494, 10541,
+                                        964,  8297, 29881,   886, 29901, 29871, 0] 
+            predict_suffix_ids = []
+        
 
         if position_ids is None:
             position_ids = cache_position.unsqueeze(0)
             for i in range(len(position_ids)):
-                position_ids[i][-len(predict_suffix_ids):] = copy.deepcopy(position_ids[i][
+                # take top-2 sum suffix position id as predict suffix position id
+                if len(predict_suffix_ids) > 0: 
+                    position_ids[i][-len(predict_suffix_ids):] = copy.deepcopy(position_ids[i][
                                                              -len(summarize_suffix_ids) - len(predict_suffix_ids): -len(
                                                                  summarize_suffix_ids)])
 
@@ -233,11 +250,13 @@ class NewLlamaModel(LlamaModel):
 
         return causal_mask
 
+
 class PreLlamaModel(LlamaForCausalLM):
-    def __init__(self, config):
+    def __init__(self, config, item_only):
         super().__init__(config)
-        self.model = NewLlamaModel(config)
+        self.model = NewLlamaModel(config, item_only)
         self.log_softmax = torch.nn.LogSoftmax(dim=1)
+        self.item_only = item_only
 
         """
         prompt type1: "{}", summarize the above passage within eight words: <s1><s2><s3><s4><s5><s6><s7><s8>
@@ -254,12 +273,33 @@ class PreLlamaModel(LlamaForCausalLM):
         32009, 32012, 32001, 32010, 32003, 32006, 32015]
 
         Maybe only one of them will appear, or both may appear. We consider all possibilities here.
+
+        ------------------------------- TinyLlama-1.1B-intermediate-step-1431k-3T ------------------------------
+        prompt type1: "{}", output the original sentence in eight words:
+        token ids: [1, 1919, 1962, 278, 2441, 10541, 297, 9475, 3838, 29901]
+
+        prompt type2: "{}:, compress the following sentence into embedding: 
+        token ids: [1, 1919, 27122, 278, 1494, 10541, 964, 23655, 29901, 29871]
+
         """
 
-        self.summarize_prompt_ids = [9162, 19138, 675, 278, 2038, 13382, 2629, 9475, 3838, 29901, 29871,
-                                     32008, 32011, 32004, 32013, 32007, 32005, 32002, 32014]
-        self.predict_prompt_ids = [9162, 8500, 278, 1494, 13382, 2629, 9475, 3838, 29901, 29871, 32000,
-                                   32009, 32012, 32001, 32010, 32003, 32006, 32015]
+        # self.summarize_prompt_ids = [9162, 19138, 675, 278, 2038, 13382, 2629, 9475, 3838, 29901, 29871,
+        #                              32008, 32011, 32004, 32013, 32007, 32005, 32002, 32014]
+        # self.predict_prompt_ids = [9162, 8500, 278, 1494, 13382, 2629, 9475, 3838, 29901, 29871, 32000,
+        #                            32009, 32012, 32001, 32010, 32003, 32006, 32015]
+
+        # TinyLlama-1.1B-intermediate-step-1431k-3T
+        self.summarize_prompt_ids = [9162, 27122, 278, 2038, 2944, 5665, 964, 8297, 29881, 886, 29901, 29871, 0]
+        self.predict_prompt_ids = [9162,  8500, 278, 2446, 2944, 23655, 29901, 29871, 0]
+        self.predict_len = 1
+
+        if self.item_only: 
+            print("using item prompt only...")
+            # only keep a single token -> will map this token embedding to HLLM 
+            self.summarize_prompt_ids = [9162, 1346, 510, 2139, 278, 1494, 10541,
+                                        964,  8297, 29881,   886, 29901, 29871, 0] 
+            self.predict_prompt_ids = []
+
 
     @add_start_docstrings_to_model_forward(LLAMA_INPUTS_DOCSTRING)
     @replace_return_docstrings(output_type=CausalLMOutputWithPast, config_class=_CONFIG_FOR_DOC)
@@ -330,16 +370,17 @@ class PreLlamaModel(LlamaForCausalLM):
             logits = [F.linear(hidden_states, lm_head_slices[i]) for i in range(self.config.pretraining_tp)]
             logits = torch.cat(logits, dim=-1)
         else:
-            logits = self.lm_head(hidden_states)
+            logits = self.lm_head(hidden_states) # linear layer on token 
         logits = logits.float()
-
+        
         ar_loss = None
         if labels is not None:
             # Shift so that tokens < n predict n
-            shift_logits = logits[..., :-1, :].contiguous()
-            shift_labels = labels[..., 1:].contiguous()
+            # !!! Should this get rid of prompt, etc? 
+            shift_logits = logits[..., :-1, :].contiguous() # all probs for all possible tokens 
+            shift_labels = labels[..., 1:].contiguous() 
             # Flatten the tokens
-            loss_fct = CrossEntropyLoss()
+            loss_fct = CrossEntropyLoss() # default ignore_idx = -100
             shift_logits = shift_logits.view(-1, self.config.vocab_size)
             shift_labels = shift_labels.view(-1)
             # Enable model parallelism
@@ -354,32 +395,47 @@ class PreLlamaModel(LlamaForCausalLM):
                     32000, 32009, 32012, 32001, 32010, 32003, 32006, 32015]
         token ids[-26:-18] —— <s1><s2><s3><s4><s5><s6><s7><s8>
         token ids[-8:] —— <s9><s10><s11><s12><s13><s14><s15><s16>
+
         """
+
         bow_summarize_loss = 0
         if output_summarize_ids is not None:
-            special_logits = logits[:, -len(self.predict_prompt_ids) - 8:-len(self.predict_prompt_ids), :]
-            special_logits, _ = torch.max(special_logits, dim=1)
+            special_logits = logits[:, -len(self.predict_prompt_ids) - 1:-len(self.predict_prompt_ids), :] # -8
+            if self.item_only:  # only one token 
+                special_logits = logits[:, -1:, :] # the special token logit 
+            special_logits, _ = torch.max(special_logits, dim=1) # max logits over the model output sum tokens 
             bow_summarize_loss = 0
             possibility = self.log_softmax(special_logits)
             batch_num = 0
             for p, temp_output_ids in zip(possibility, output_summarize_ids):
-                unique_useful_ids = torch.unique(temp_output_ids[temp_output_ids > 2])
+                if self.item_only: # keep the <unk> token with id 0 to align with HLLM 
+                    temp_output_ids = temp_output_ids[temp_output_ids != 1]
+                    unique_useful_ids = torch.unique(temp_output_ids[temp_output_ids != 2])
+                else: 
+                    # unique_useful_ids = torch.unique(temp_output_ids[temp_output_ids > 2])
+                    # updated for a single token summarization 
+                    temp_output_ids = temp_output_ids[temp_output_ids != 1]
+                    unique_useful_ids = torch.unique(temp_output_ids[temp_output_ids != 2])
                 if len(unique_useful_ids) > 0:
-                    bow_summarize_loss -= torch.mean(p[unique_useful_ids])
+                    bow_summarize_loss -= torch.mean(p[unique_useful_ids]) # avg neg log likelihood of sum tokens
                     batch_num += 1
             if batch_num > 0:
+                # averaging 
                 bow_summarize_loss /= batch_num
                 bow_summarize_loss /= 10
 
         bow_predict_loss = 0
         if output_predict_ids is not None:
-            special_logits = logits[:, -8:, :]
-            special_logits, _ = torch.max(special_logits, dim=1)
+            special_logits = logits[:, -self.predict_len:, :] # for the single predict token 
+            special_logits, _ = torch.max(special_logits, dim=1) # get the only predict token embed 
             bow_predict_loss = 0
             possibility = self.log_softmax(special_logits)
             batch_num = 0
             for p, temp_output_ids in zip(possibility, output_predict_ids):
-                unique_useful_ids = torch.unique(temp_output_ids[temp_output_ids > 2])
+                # unique_useful_ids = torch.unique(temp_output_ids[temp_output_ids > 2])
+                # # updated for a single item prediction 
+                temp_output_ids = temp_output_ids[temp_output_ids != 1]
+                unique_useful_ids = torch.unique(temp_output_ids[temp_output_ids != 2])
                 if len(unique_useful_ids) > 0:
                     bow_predict_loss -= torch.mean(p[unique_useful_ids])
                     batch_num += 1
@@ -407,12 +463,23 @@ class PreLlamaModel(LlamaForCausalLM):
             output = (logits,) + outputs[1:]
             return (loss,) + output if loss is not None else output
 
-        return CausalLMOutputWithPast(
+        # return CausalLMOutputWithPast(
+        #     loss=loss,
+        #     logits=logits,
+        #     past_key_values=outputs.past_key_values,
+        #     hidden_states=outputs.hidden_states,
+        #     attentions=outputs.attentions,
+        # )
+
+        return CustomCausalLMOutputWithPast(
             loss=loss,
             logits=logits,
             past_key_values=outputs.past_key_values,
             hidden_states=outputs.hidden_states,
             attentions=outputs.attentions,
+            ar_loss=ar_loss, 
+            sum_loss=bow_summarize_loss, 
+            pred_loss=bow_predict_loss, 
         )
 
 

@@ -15,14 +15,15 @@ It is known for the following features:
 
 ## Environment
 ```bash
-conda create llara python=3.10
+conda create -n llara python=3.10
 
 conda activate llara
 
 # You may need to adjust the cuda version
-conda install pytorch pytorch-cuda=12.1 -c pytorch -c nvidia
-pip install transformers==4.41.0 deepspeed accelerate datasets peft pandas
-pip install flash-attn --no-build-isolation
+# conda install pytorch pytorch-cuda=12.1 -c pytorch -c nvidia
+pip install numpy==1.26.4 torch==2.1.1
+pip install transformers==4.41.0 deepspeed==0.14.2 accelerate datasets peft pandas
+pip install flash-attn==2.5.9.post1 --no-build-isolation
 ```
 
 ## Model List

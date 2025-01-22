@@ -1,0 +1,720 @@
+{'access_token': None,
+ 'checkpoint_dir': PosixPath('checkpoints/EleutherAI/pythia-1b'),
+ 'data': JSON(json_path=PosixPath('/data/user_data/jingyuah/LLARA/data/pretrain/fineweb_item_litgpt.jsonl'),
+              mask_prompt=False,
+              val_split_fraction=0.05,
+              prompt_style=<litgpt.prompts.Alpaca object at 0x7fb48f85dd20>,
+              ignore_index=-100,
+              seed=42,
+              num_workers=4),
+ 'devices': 2,
+ 'eval': EvalArgs(interval=100,
+                  max_new_tokens=100,
+                  max_iters=100,
+                  initial_validation=True,
+                  final_validation=True,
+                  evaluate_example='first'),
+ 'logger_name': 'wandb',
+ 'num_nodes': 1,
+ 'optimizer': 'Adam',
+ 'out_dir': PosixPath('/data/user_data/jingyuah/LLARA/checkpoints/litgpt_fineweb_74k_pythia_1b_warmup_0.1'),
+ 'precision': None,
+ 'resume': False,
+ 'seed': 42,
+ 'train': TrainArgs(save_interval=1000,
+                    log_interval=5,
+                    global_batch_size=256,
+                    micro_batch_size=128,
+                    lr_warmup_steps=300,
+                    lr_warmup_fraction=None,
+                    epochs=10,
+                    max_tokens=None,
+                    max_steps=None,
+                    max_seq_length=128,
+                    tie_embeddings=None,
+                    max_norm=None,
+                    min_lr=1e-05)}
+All GPUs are fully connected via NVLink.
+Number of trainable parameters: 1,011,781,632
+The longest sequence length in the train data is 128, the model's maximum sequence length is 128 and context length is 2048
+Validating ...
+Epoch 1 | iter 5 step 5 | loss train: 2.990, val: 3.655 | iter time: 1490.03 ms (step)
+Epoch 1 | iter 10 step 10 | loss train: 2.131, val: 3.655 | iter time: 1495.61 ms (step)
+Epoch 1 | iter 15 step 15 | loss train: 2.178, val: 3.655 | iter time: 1488.27 ms (step)
+Epoch 1 | iter 20 step 20 | loss train: 2.114, val: 3.655 | iter time: 1493.39 ms (step)
+Epoch 1 | iter 25 step 25 | loss train: 2.129, val: 3.655 | iter time: 1493.83 ms (step)
+Epoch 1 | iter 30 step 30 | loss train: 2.169, val: 3.655 | iter time: 1496.83 ms (step)
+Epoch 1 | iter 35 step 35 | loss train: 2.238, val: 3.655 | iter time: 1499.09 ms (step)
+Epoch 1 | iter 40 step 40 | loss train: 2.164, val: 3.655 | iter time: 1497.49 ms (step)
+Epoch 1 | iter 45 step 45 | loss train: 2.166, val: 3.655 | iter time: 1497.67 ms (step)
+Epoch 1 | iter 50 step 50 | loss train: 2.181, val: 3.655 | iter time: 1498.44 ms (step)
+Epoch 1 | iter 55 step 55 | loss train: 2.202, val: 3.655 | iter time: 1501.16 ms (step)
+Epoch 1 | iter 60 step 60 | loss train: 2.164, val: 3.655 | iter time: 1501.69 ms (step)
+Epoch 1 | iter 65 step 65 | loss train: 2.180, val: 3.655 | iter time: 1502.96 ms (step)
+Epoch 1 | iter 70 step 70 | loss train: 2.268, val: 3.655 | iter time: 1504.92 ms (step)
+Epoch 1 | iter 75 step 75 | loss train: 2.310, val: 3.655 | iter time: 1505.17 ms (step)
+Epoch 1 | iter 80 step 80 | loss train: 2.248, val: 3.655 | iter time: 1506.40 ms (step)
+Epoch 1 | iter 85 step 85 | loss train: 2.268, val: 3.655 | iter time: 1507.08 ms (step)
+Epoch 1 | iter 90 step 90 | loss train: 2.346, val: 3.655 | iter time: 1505.98 ms (step)
+Epoch 1 | iter 95 step 95 | loss train: 2.323, val: 3.655 | iter time: 1507.24 ms (step)
+Epoch 1 | iter 100 step 100 | loss train: 2.392, val: 3.655 | iter time: 1506.96 ms (step)
+Validating ...
+compress the following sentence into embedding: 
+Length of encoded instruction (37) and eval.max_new_tokens (100) exceeds model.max_seq_length (128) used for training. Skipping example generation for efficiency. The model's supported context size (post-training) is 2048.
+iter 100: val loss 2.3604, val time: 8192.95 ms
+Epoch 1 | iter 105 step 105 | loss train: 2.279, val: 2.360 | iter time: 1506.37 ms (step)
+Epoch 1 | iter 110 step 110 | loss train: 2.422, val: 2.360 | iter time: 1507.47 ms (step)
+Epoch 1 | iter 115 step 115 | loss train: 2.421, val: 2.360 | iter time: 1506.61 ms (step)
+Epoch 1 | iter 120 step 120 | loss train: 2.419, val: 2.360 | iter time: 1507.74 ms (step)
+Epoch 1 | iter 125 step 125 | loss train: 2.431, val: 2.360 | iter time: 1507.66 ms (step)
+Epoch 1 | iter 130 step 130 | loss train: 7.379, val: 2.360 | iter time: 1508.92 ms (step)
+Epoch 1 | iter 135 step 135 | loss train: 7.579, val: 2.360 | iter time: 1503.60 ms (step)
+Epoch 1 | iter 140 step 140 | loss train: 6.702, val: 2.360 | iter time: 1504.52 ms (step)
+Epoch 1 | iter 145 step 145 | loss train: 6.463, val: 2.360 | iter time: 1507.56 ms (step)
+Epoch 1 | iter 150 step 150 | loss train: 6.028, val: 2.360 | iter time: 1506.83 ms (step)
+Epoch 1 | iter 155 step 155 | loss train: 5.823, val: 2.360 | iter time: 1506.74 ms (step)
+Epoch 1 | iter 160 step 160 | loss train: 5.539, val: 2.360 | iter time: 1508.63 ms (step)
+Epoch 1 | iter 165 step 165 | loss train: 5.266, val: 2.360 | iter time: 1509.19 ms (step)
+Epoch 1 | iter 170 step 170 | loss train: 4.972, val: 2.360 | iter time: 1509.00 ms (step)
+Epoch 1 | iter 175 step 175 | loss train: 4.857, val: 2.360 | iter time: 1509.40 ms (step)
+Epoch 1 | iter 180 step 180 | loss train: 5.527, val: 2.360 | iter time: 1508.36 ms (step)
+Epoch 1 | iter 185 step 185 | loss train: 5.571, val: 2.360 | iter time: 1508.94 ms (step)
+Epoch 1 | iter 190 step 190 | loss train: 5.337, val: 2.360 | iter time: 1510.17 ms (step)
+Epoch 1 | iter 195 step 195 | loss train: 5.052, val: 2.360 | iter time: 1508.39 ms (step)
+Epoch 1 | iter 200 step 200 | loss train: 4.906, val: 2.360 | iter time: 1510.21 ms (step)
+Validating ...
+compress the following sentence into embedding: 
+Length of encoded instruction (37) and eval.max_new_tokens (100) exceeds model.max_seq_length (128) used for training. Skipping example generation for efficiency. The model's supported context size (post-training) is 2048.
+iter 200: val loss 4.8619, val time: 8137.86 ms
+Epoch 1 | iter 205 step 205 | loss train: 4.782, val: 4.862 | iter time: 1509.72 ms (step)
+Epoch 1 | iter 210 step 210 | loss train: 4.724, val: 4.862 | iter time: 1509.22 ms (step)
+Epoch 1 | iter 215 step 215 | loss train: 4.679, val: 4.862 | iter time: 1508.01 ms (step)
+Epoch 1 | iter 220 step 220 | loss train: 4.604, val: 4.862 | iter time: 1510.51 ms (step)
+Epoch 1 | iter 225 step 225 | loss train: 4.574, val: 4.862 | iter time: 1508.95 ms (step)
+Epoch 1 | iter 230 step 230 | loss train: 4.630, val: 4.862 | iter time: 1507.95 ms (step)
+Epoch 1 | iter 235 step 235 | loss train: 4.497, val: 4.862 | iter time: 1509.89 ms (step)
+Epoch 1 | iter 240 step 240 | loss train: 4.536, val: 4.862 | iter time: 1509.75 ms (step)
+Epoch 1 | iter 245 step 245 | loss train: 4.509, val: 4.862 | iter time: 1509.45 ms (step)
+Epoch 1 | iter 250 step 250 | loss train: 4.455, val: 4.862 | iter time: 1509.88 ms (step)
+Epoch 1 | iter 255 step 255 | loss train: 4.450, val: 4.862 | iter time: 1509.42 ms (step)
+Epoch 1 | iter 260 step 260 | loss train: 4.452, val: 4.862 | iter time: 1509.49 ms (step)
+Epoch 1 | iter 265 step 265 | loss train: 4.422, val: 4.862 | iter time: 1508.66 ms (step)
+Epoch 1 | iter 270 step 270 | loss train: 4.420, val: 4.862 | iter time: 1510.03 ms (step)
+Epoch 1 | iter 275 step 275 | loss train: 4.438, val: 4.862 | iter time: 1509.65 ms (step)
+Epoch 2 | iter 280 step 280 | loss train: 4.366, val: 4.862 | iter time: 1508.36 ms (step)
+Epoch 2 | iter 285 step 285 | loss train: 4.341, val: 4.862 | iter time: 1509.47 ms (step)
+Epoch 2 | iter 290 step 290 | loss train: 4.342, val: 4.862 | iter time: 1510.28 ms (step)
+Epoch 2 | iter 295 step 295 | loss train: 4.361, val: 4.862 | iter time: 1509.69 ms (step)
+Epoch 2 | iter 300 step 300 | loss train: 4.336, val: 4.862 | iter time: 1510.19 ms (step)
+Validating ...
+compress the following sentence into embedding: 
+Length of encoded instruction (37) and eval.max_new_tokens (100) exceeds model.max_seq_length (128) used for training. Skipping example generation for efficiency. The model's supported context size (post-training) is 2048.
+iter 300: val loss 4.3457, val time: 7993.21 ms
+Epoch 2 | iter 305 step 305 | loss train: 4.375, val: 4.346 | iter time: 1510.43 ms (step)
+Epoch 2 | iter 310 step 310 | loss train: 4.307, val: 4.346 | iter time: 1509.96 ms (step)
+Epoch 2 | iter 315 step 315 | loss train: 4.316, val: 4.346 | iter time: 1509.32 ms (step)
+Epoch 2 | iter 320 step 320 | loss train: 4.255, val: 4.346 | iter time: 1510.04 ms (step)
+Epoch 2 | iter 325 step 325 | loss train: 4.274, val: 4.346 | iter time: 1509.71 ms (step)
+Epoch 2 | iter 330 step 330 | loss train: 4.256, val: 4.346 | iter time: 1510.42 ms (step)
+Epoch 2 | iter 335 step 335 | loss train: 4.204, val: 4.346 | iter time: 1509.97 ms (step)
+Epoch 2 | iter 340 step 340 | loss train: 4.255, val: 4.346 | iter time: 1510.00 ms (step)
+Epoch 2 | iter 345 step 345 | loss train: 4.273, val: 4.346 | iter time: 1510.50 ms (step)
+Epoch 2 | iter 350 step 350 | loss train: 4.232, val: 4.346 | iter time: 1512.07 ms (step)
+Epoch 2 | iter 355 step 355 | loss train: 4.224, val: 4.346 | iter time: 1512.00 ms (step)
+Epoch 2 | iter 360 step 360 | loss train: 4.172, val: 4.346 | iter time: 1510.03 ms (step)
+Epoch 2 | iter 365 step 365 | loss train: 4.284, val: 4.346 | iter time: 1510.18 ms (step)
+Epoch 2 | iter 370 step 370 | loss train: 4.171, val: 4.346 | iter time: 1512.15 ms (step)
+Epoch 2 | iter 375 step 375 | loss train: 4.146, val: 4.346 | iter time: 1510.71 ms (step)
+Epoch 2 | iter 380 step 380 | loss train: 4.165, val: 4.346 | iter time: 1509.87 ms (step)
+Epoch 2 | iter 385 step 385 | loss train: 4.166, val: 4.346 | iter time: 1509.77 ms (step)
+Epoch 2 | iter 390 step 390 | loss train: 4.094, val: 4.346 | iter time: 1510.00 ms (step)
+Epoch 2 | iter 395 step 395 | loss train: 4.146, val: 4.346 | iter time: 1511.11 ms (step)
+Epoch 2 | iter 400 step 400 | loss train: 4.143, val: 4.346 | iter time: 1509.49 ms (step)
+Validating ...
+compress the following sentence into embedding: 
+Length of encoded instruction (37) and eval.max_new_tokens (100) exceeds model.max_seq_length (128) used for training. Skipping example generation for efficiency. The model's supported context size (post-training) is 2048.
+iter 400: val loss 4.1576, val time: 8007.60 ms
+Epoch 2 | iter 405 step 405 | loss train: 4.289, val: 4.158 | iter time: 1509.39 ms (step)
+Epoch 2 | iter 410 step 410 | loss train: 4.286, val: 4.158 | iter time: 1509.64 ms (step)
+Epoch 2 | iter 415 step 415 | loss train: 4.503, val: 4.158 | iter time: 1508.21 ms (step)
+Epoch 2 | iter 420 step 420 | loss train: 4.288, val: 4.158 | iter time: 1511.38 ms (step)
+Epoch 2 | iter 425 step 425 | loss train: 4.252, val: 4.158 | iter time: 1508.91 ms (step)
+Epoch 2 | iter 430 step 430 | loss train: 4.135, val: 4.158 | iter time: 1510.40 ms (step)
+Epoch 2 | iter 435 step 435 | loss train: 4.204, val: 4.158 | iter time: 1508.89 ms (step)
+Epoch 2 | iter 440 step 440 | loss train: 4.162, val: 4.158 | iter time: 1510.29 ms (step)
+Epoch 2 | iter 445 step 445 | loss train: 4.129, val: 4.158 | iter time: 1510.53 ms (step)
+Epoch 2 | iter 450 step 450 | loss train: 4.128, val: 4.158 | iter time: 1509.73 ms (step)
+Epoch 2 | iter 455 step 455 | loss train: 4.076, val: 4.158 | iter time: 1510.07 ms (step)
+Epoch 2 | iter 460 step 460 | loss train: 4.091, val: 4.158 | iter time: 1511.17 ms (step)
+Epoch 2 | iter 465 step 465 | loss train: 3.986, val: 4.158 | iter time: 1511.05 ms (step)
+Epoch 2 | iter 470 step 470 | loss train: 4.065, val: 4.158 | iter time: 1509.98 ms (step)
+Epoch 2 | iter 475 step 475 | loss train: 4.068, val: 4.158 | iter time: 1509.72 ms (step)
+Epoch 2 | iter 480 step 480 | loss train: 4.011, val: 4.158 | iter time: 1510.15 ms (step)
+Epoch 2 | iter 485 step 485 | loss train: 4.011, val: 4.158 | iter time: 1509.79 ms (step)
+Epoch 2 | iter 490 step 490 | loss train: 3.958, val: 4.158 | iter time: 1510.04 ms (step)
+Epoch 2 | iter 495 step 495 | loss train: 3.945, val: 4.158 | iter time: 1511.25 ms (step)
+Epoch 2 | iter 500 step 500 | loss train: 3.994, val: 4.158 | iter time: 1510.77 ms (step)
+Validating ...
+compress the following sentence into embedding: 
+Length of encoded instruction (37) and eval.max_new_tokens (100) exceeds model.max_seq_length (128) used for training. Skipping example generation for efficiency. The model's supported context size (post-training) is 2048.
+iter 500: val loss 3.9351, val time: 8290.49 ms
+Epoch 2 | iter 505 step 505 | loss train: 3.891, val: 3.935 | iter time: 1507.29 ms (step)
+Epoch 2 | iter 510 step 510 | loss train: 3.913, val: 3.935 | iter time: 1509.98 ms (step)
+Epoch 2 | iter 515 step 515 | loss train: 3.894, val: 3.935 | iter time: 1510.54 ms (step)
+Epoch 2 | iter 520 step 520 | loss train: 3.915, val: 3.935 | iter time: 1509.70 ms (step)
+Epoch 2 | iter 525 step 525 | loss train: 4.073, val: 3.935 | iter time: 1511.25 ms (step)
+Epoch 2 | iter 530 step 530 | loss train: 3.916, val: 3.935 | iter time: 1509.38 ms (step)
+Epoch 2 | iter 535 step 535 | loss train: 3.939, val: 3.935 | iter time: 1509.77 ms (step)
+Epoch 2 | iter 540 step 540 | loss train: 3.897, val: 3.935 | iter time: 1512.69 ms (step)
+Epoch 2 | iter 545 step 545 | loss train: 3.758, val: 3.935 | iter time: 1509.45 ms (step)
+Epoch 2 | iter 550 step 550 | loss train: 3.741, val: 3.935 | iter time: 1509.93 ms (step)
+Epoch 3 | iter 555 step 555 | loss train: 3.626, val: 3.935 | iter time: 1507.77 ms (step)
+Epoch 3 | iter 560 step 560 | loss train: 3.587, val: 3.935 | iter time: 1510.27 ms (step)
+Epoch 3 | iter 565 step 565 | loss train: 3.680, val: 3.935 | iter time: 1507.68 ms (step)
+Epoch 3 | iter 570 step 570 | loss train: 3.596, val: 3.935 | iter time: 1511.06 ms (step)
+Epoch 3 | iter 575 step 575 | loss train: 3.501, val: 3.935 | iter time: 1510.16 ms (step)
+Epoch 3 | iter 580 step 580 | loss train: 3.527, val: 3.935 | iter time: 1509.33 ms (step)
+Epoch 3 | iter 585 step 585 | loss train: 3.715, val: 3.935 | iter time: 1510.30 ms (step)
+Epoch 3 | iter 590 step 590 | loss train: 3.638, val: 3.935 | iter time: 1511.67 ms (step)
+Epoch 3 | iter 595 step 595 | loss train: 3.527, val: 3.935 | iter time: 1508.99 ms (step)
+Epoch 3 | iter 600 step 600 | loss train: 3.494, val: 3.935 | iter time: 1510.36 ms (step)
+Validating ...
+compress the following sentence into embedding: 
+Length of encoded instruction (37) and eval.max_new_tokens (100) exceeds model.max_seq_length (128) used for training. Skipping example generation for efficiency. The model's supported context size (post-training) is 2048.
+iter 600: val loss 3.5212, val time: 48843.30 ms
+Epoch 3 | iter 605 step 605 | loss train: 3.454, val: 3.521 | iter time: 1496.73 ms (step)
+Epoch 3 | iter 610 step 610 | loss train: 3.358, val: 3.521 | iter time: 1500.14 ms (step)
+Epoch 3 | iter 615 step 615 | loss train: 3.342, val: 3.521 | iter time: 1498.24 ms (step)
+Epoch 3 | iter 620 step 620 | loss train: 3.311, val: 3.521 | iter time: 1497.73 ms (step)
+Epoch 3 | iter 625 step 625 | loss train: 3.299, val: 3.521 | iter time: 1500.56 ms (step)
+Epoch 3 | iter 630 step 630 | loss train: 3.288, val: 3.521 | iter time: 1501.13 ms (step)
+Epoch 3 | iter 635 step 635 | loss train: 3.291, val: 3.521 | iter time: 1503.35 ms (step)
+Epoch 3 | iter 640 step 640 | loss train: 3.249, val: 3.521 | iter time: 1503.37 ms (step)
+Epoch 3 | iter 645 step 645 | loss train: 3.233, val: 3.521 | iter time: 1504.84 ms (step)
+Epoch 3 | iter 650 step 650 | loss train: 3.226, val: 3.521 | iter time: 1505.36 ms (step)
+Epoch 3 | iter 655 step 655 | loss train: 3.228, val: 3.521 | iter time: 1505.95 ms (step)
+Epoch 3 | iter 660 step 660 | loss train: 3.175, val: 3.521 | iter time: 1506.17 ms (step)
+Epoch 3 | iter 665 step 665 | loss train: 3.145, val: 3.521 | iter time: 1508.02 ms (step)
+Epoch 3 | iter 670 step 670 | loss train: 3.151, val: 3.521 | iter time: 1508.29 ms (step)
+Epoch 3 | iter 675 step 675 | loss train: 3.202, val: 3.521 | iter time: 1507.74 ms (step)
+Epoch 3 | iter 680 step 680 | loss train: 3.136, val: 3.521 | iter time: 1509.63 ms (step)
+Epoch 3 | iter 685 step 685 | loss train: 3.129, val: 3.521 | iter time: 1508.09 ms (step)
+Epoch 3 | iter 690 step 690 | loss train: 3.152, val: 3.521 | iter time: 1510.09 ms (step)
+Epoch 3 | iter 695 step 695 | loss train: 3.116, val: 3.521 | iter time: 1509.18 ms (step)
+Epoch 3 | iter 700 step 700 | loss train: 3.112, val: 3.521 | iter time: 1508.31 ms (step)
+Validating ...
+compress the following sentence into embedding: 
+Length of encoded instruction (37) and eval.max_new_tokens (100) exceeds model.max_seq_length (128) used for training. Skipping example generation for efficiency. The model's supported context size (post-training) is 2048.
+iter 700: val loss 3.1468, val time: 8096.60 ms
+Epoch 3 | iter 705 step 705 | loss train: 3.130, val: 3.147 | iter time: 1508.41 ms (step)
+Epoch 3 | iter 710 step 710 | loss train: 3.020, val: 3.147 | iter time: 1508.30 ms (step)
+Epoch 3 | iter 715 step 715 | loss train: 3.057, val: 3.147 | iter time: 1508.21 ms (step)
+Epoch 3 | iter 720 step 720 | loss train: 3.106, val: 3.147 | iter time: 1511.19 ms (step)
+Epoch 3 | iter 725 step 725 | loss train: 3.139, val: 3.147 | iter time: 1510.24 ms (step)
+Epoch 3 | iter 730 step 730 | loss train: 3.073, val: 3.147 | iter time: 1510.03 ms (step)
+Epoch 3 | iter 735 step 735 | loss train: 3.065, val: 3.147 | iter time: 1510.12 ms (step)
+Epoch 3 | iter 740 step 740 | loss train: 3.034, val: 3.147 | iter time: 1510.13 ms (step)
+Epoch 3 | iter 745 step 745 | loss train: 2.988, val: 3.147 | iter time: 1509.92 ms (step)
+Epoch 3 | iter 750 step 750 | loss train: 2.958, val: 3.147 | iter time: 1511.04 ms (step)
+Epoch 3 | iter 755 step 755 | loss train: 2.991, val: 3.147 | iter time: 1510.67 ms (step)
+Epoch 3 | iter 760 step 760 | loss train: 3.020, val: 3.147 | iter time: 1509.90 ms (step)
+Epoch 3 | iter 765 step 765 | loss train: 3.009, val: 3.147 | iter time: 1509.97 ms (step)
+Epoch 3 | iter 770 step 770 | loss train: 3.032, val: 3.147 | iter time: 1509.57 ms (step)
+Epoch 3 | iter 775 step 775 | loss train: 2.948, val: 3.147 | iter time: 1510.96 ms (step)
+Epoch 3 | iter 780 step 780 | loss train: 2.951, val: 3.147 | iter time: 1508.34 ms (step)
+Epoch 3 | iter 785 step 785 | loss train: 2.982, val: 3.147 | iter time: 1511.11 ms (step)
+Epoch 3 | iter 790 step 790 | loss train: 3.012, val: 3.147 | iter time: 1509.53 ms (step)
+Epoch 3 | iter 795 step 795 | loss train: 2.982, val: 3.147 | iter time: 1509.10 ms (step)
+Epoch 3 | iter 800 step 800 | loss train: 2.992, val: 3.147 | iter time: 1511.25 ms (step)
+Validating ...
+compress the following sentence into embedding: 
+Length of encoded instruction (37) and eval.max_new_tokens (100) exceeds model.max_seq_length (128) used for training. Skipping example generation for efficiency. The model's supported context size (post-training) is 2048.
+iter 800: val loss 3.0301, val time: 8106.76 ms
+Epoch 3 | iter 805 step 805 | loss train: 2.979, val: 3.030 | iter time: 1511.20 ms (step)
+Epoch 3 | iter 810 step 810 | loss train: 2.957, val: 3.030 | iter time: 1509.54 ms (step)
+Epoch 3 | iter 815 step 815 | loss train: 2.949, val: 3.030 | iter time: 1509.10 ms (step)
+Epoch 3 | iter 820 step 820 | loss train: 2.987, val: 3.030 | iter time: 1510.81 ms (step)
+Epoch 3 | iter 825 step 825 | loss train: 2.980, val: 3.030 | iter time: 1510.03 ms (step)
+Epoch 4 | iter 830 step 830 | loss train: 2.755, val: 3.030 | iter time: 1507.50 ms (step)
+Epoch 4 | iter 835 step 835 | loss train: 2.678, val: 3.030 | iter time: 1508.16 ms (step)
+Epoch 4 | iter 840 step 840 | loss train: 2.704, val: 3.030 | iter time: 1508.02 ms (step)
+Epoch 4 | iter 845 step 845 | loss train: 2.606, val: 3.030 | iter time: 1509.88 ms (step)
+Epoch 4 | iter 850 step 850 | loss train: 2.590, val: 3.030 | iter time: 1510.17 ms (step)
+Epoch 4 | iter 855 step 855 | loss train: 2.679, val: 3.030 | iter time: 1510.05 ms (step)
+Epoch 4 | iter 860 step 860 | loss train: 2.720, val: 3.030 | iter time: 1509.81 ms (step)
+Epoch 4 | iter 865 step 865 | loss train: 2.755, val: 3.030 | iter time: 1509.77 ms (step)
+Epoch 4 | iter 870 step 870 | loss train: 2.650, val: 3.030 | iter time: 1508.69 ms (step)
+Epoch 4 | iter 875 step 875 | loss train: 2.711, val: 3.030 | iter time: 1510.47 ms (step)
+Epoch 4 | iter 880 step 880 | loss train: 2.675, val: 3.030 | iter time: 1509.19 ms (step)
+Epoch 4 | iter 885 step 885 | loss train: 2.708, val: 3.030 | iter time: 1510.92 ms (step)
+Epoch 4 | iter 890 step 890 | loss train: 2.679, val: 3.030 | iter time: 1510.38 ms (step)
+Epoch 4 | iter 895 step 895 | loss train: 2.665, val: 3.030 | iter time: 1509.22 ms (step)
+Epoch 4 | iter 900 step 900 | loss train: 2.721, val: 3.030 | iter time: 1510.47 ms (step)
+Validating ...
+compress the following sentence into embedding: 
+Length of encoded instruction (37) and eval.max_new_tokens (100) exceeds model.max_seq_length (128) used for training. Skipping example generation for efficiency. The model's supported context size (post-training) is 2048.
+iter 900: val loss 3.0019, val time: 8052.33 ms
+Epoch 4 | iter 905 step 905 | loss train: 2.735, val: 3.002 | iter time: 1508.97 ms (step)
+Epoch 4 | iter 910 step 910 | loss train: 2.798, val: 3.002 | iter time: 1507.83 ms (step)
+Epoch 4 | iter 915 step 915 | loss train: 2.738, val: 3.002 | iter time: 1508.79 ms (step)
+Epoch 4 | iter 920 step 920 | loss train: 2.735, val: 3.002 | iter time: 1510.83 ms (step)
+Epoch 4 | iter 925 step 925 | loss train: 2.748, val: 3.002 | iter time: 1510.11 ms (step)
+Epoch 4 | iter 930 step 930 | loss train: 2.781, val: 3.002 | iter time: 1509.73 ms (step)
+Epoch 4 | iter 935 step 935 | loss train: 2.713, val: 3.002 | iter time: 1508.57 ms (step)
+Epoch 4 | iter 940 step 940 | loss train: 2.693, val: 3.002 | iter time: 1510.22 ms (step)
+Epoch 4 | iter 945 step 945 | loss train: 2.731, val: 3.002 | iter time: 1509.60 ms (step)
+Epoch 4 | iter 950 step 950 | loss train: 2.681, val: 3.002 | iter time: 1508.77 ms (step)
+Epoch 4 | iter 955 step 955 | loss train: 2.747, val: 3.002 | iter time: 1508.82 ms (step)
+Epoch 4 | iter 960 step 960 | loss train: 2.802, val: 3.002 | iter time: 1509.20 ms (step)
+Epoch 4 | iter 965 step 965 | loss train: 2.682, val: 3.002 | iter time: 1509.88 ms (step)
+Epoch 4 | iter 970 step 970 | loss train: 2.734, val: 3.002 | iter time: 1509.45 ms (step)
+Epoch 4 | iter 975 step 975 | loss train: 2.708, val: 3.002 | iter time: 1510.24 ms (step)
+Epoch 4 | iter 980 step 980 | loss train: 2.726, val: 3.002 | iter time: 1511.43 ms (step)
+Epoch 4 | iter 985 step 985 | loss train: 2.738, val: 3.002 | iter time: 1510.40 ms (step)
+Epoch 4 | iter 990 step 990 | loss train: 2.771, val: 3.002 | iter time: 1509.58 ms (step)
+Epoch 4 | iter 995 step 995 | loss train: 2.650, val: 3.002 | iter time: 1512.78 ms (step)
+Epoch 4 | iter 1000 step 1000 | loss train: 2.721, val: 3.002 | iter time: 1511.17 ms (step)
+Validating ...
+compress the following sentence into embedding: 
+Length of encoded instruction (37) and eval.max_new_tokens (100) exceeds model.max_seq_length (128) used for training. Skipping example generation for efficiency. The model's supported context size (post-training) is 2048.
+iter 1000: val loss 2.9660, val time: 8191.49 ms
+Saving checkpoint to '/data/user_data/jingyuah/LLARA/checkpoints/litgpt_fineweb_74k_pythia_1b_warmup_0.1/step-001000'
+Epoch 4 | iter 1005 step 1005 | loss train: 2.723, val: 2.966 | iter time: 1495.25 ms (step)
+Epoch 4 | iter 1010 step 1010 | loss train: 2.693, val: 2.966 | iter time: 1498.81 ms (step)
+Epoch 4 | iter 1015 step 1015 | loss train: 2.724, val: 2.966 | iter time: 1495.98 ms (step)
+Epoch 4 | iter 1020 step 1020 | loss train: 2.703, val: 2.966 | iter time: 1497.56 ms (step)
+Epoch 4 | iter 1025 step 1025 | loss train: 2.685, val: 2.966 | iter time: 1499.69 ms (step)
+Epoch 4 | iter 1030 step 1030 | loss train: 2.623, val: 2.966 | iter time: 1500.20 ms (step)
+Epoch 4 | iter 1035 step 1035 | loss train: 2.681, val: 2.966 | iter time: 1504.84 ms (step)
+Epoch 4 | iter 1040 step 1040 | loss train: 2.640, val: 2.966 | iter time: 1504.33 ms (step)
+Epoch 4 | iter 1045 step 1045 | loss train: 2.677, val: 2.966 | iter time: 1507.78 ms (step)
+Epoch 4 | iter 1050 step 1050 | loss train: 2.695, val: 2.966 | iter time: 1505.51 ms (step)
+Epoch 4 | iter 1055 step 1055 | loss train: 2.670, val: 2.966 | iter time: 1506.59 ms (step)
+Epoch 4 | iter 1060 step 1060 | loss train: 2.695, val: 2.966 | iter time: 1507.67 ms (step)
+Epoch 4 | iter 1065 step 1065 | loss train: 2.702, val: 2.966 | iter time: 1507.45 ms (step)
+Epoch 4 | iter 1070 step 1070 | loss train: 2.717, val: 2.966 | iter time: 1509.25 ms (step)
+Epoch 4 | iter 1075 step 1075 | loss train: 2.684, val: 2.966 | iter time: 1508.25 ms (step)
+Epoch 4 | iter 1080 step 1080 | loss train: 2.698, val: 2.966 | iter time: 1508.71 ms (step)
+Epoch 4 | iter 1085 step 1085 | loss train: 2.680, val: 2.966 | iter time: 1509.43 ms (step)
+Epoch 4 | iter 1090 step 1090 | loss train: 2.658, val: 2.966 | iter time: 1509.05 ms (step)
+Epoch 4 | iter 1095 step 1095 | loss train: 2.670, val: 2.966 | iter time: 1508.03 ms (step)
+Epoch 4 | iter 1100 step 1100 | loss train: 2.686, val: 2.966 | iter time: 1507.69 ms (step)
+Validating ...
+compress the following sentence into embedding: 
+Length of encoded instruction (37) and eval.max_new_tokens (100) exceeds model.max_seq_length (128) used for training. Skipping example generation for efficiency. The model's supported context size (post-training) is 2048.
+iter 1100: val loss 2.9150, val time: 8205.70 ms
+Epoch 5 | iter 1105 step 1105 | loss train: 2.368, val: 2.915 | iter time: 4435.09 ms (step)
+Epoch 5 | iter 1110 step 1110 | loss train: 2.298, val: 2.915 | iter time: 1506.25 ms (step)
+Epoch 5 | iter 1115 step 1115 | loss train: 2.312, val: 2.915 | iter time: 1506.15 ms (step)
+Epoch 5 | iter 1120 step 1120 | loss train: 2.201, val: 2.915 | iter time: 1508.39 ms (step)
+Epoch 5 | iter 1125 step 1125 | loss train: 2.179, val: 2.915 | iter time: 1507.96 ms (step)
+Epoch 5 | iter 1130 step 1130 | loss train: 2.260, val: 2.915 | iter time: 1507.93 ms (step)
+Epoch 5 | iter 1135 step 1135 | loss train: 2.327, val: 2.915 | iter time: 1509.97 ms (step)
+Epoch 5 | iter 1140 step 1140 | loss train: 2.326, val: 2.915 | iter time: 1510.07 ms (step)
+Epoch 5 | iter 1145 step 1145 | loss train: 2.248, val: 2.915 | iter time: 1512.06 ms (step)
+Epoch 5 | iter 1150 step 1150 | loss train: 2.299, val: 2.915 | iter time: 1508.37 ms (step)
+Epoch 5 | iter 1155 step 1155 | loss train: 2.248, val: 2.915 | iter time: 1510.38 ms (step)
+Epoch 5 | iter 1160 step 1160 | loss train: 2.277, val: 2.915 | iter time: 1510.95 ms (step)
+Epoch 5 | iter 1165 step 1165 | loss train: 2.314, val: 2.915 | iter time: 1510.82 ms (step)
+Epoch 5 | iter 1170 step 1170 | loss train: 2.345, val: 2.915 | iter time: 1508.98 ms (step)
+Epoch 5 | iter 1175 step 1175 | loss train: 2.235, val: 2.915 | iter time: 1509.95 ms (step)
+Epoch 5 | iter 1180 step 1180 | loss train: 2.287, val: 2.915 | iter time: 1509.51 ms (step)
+Epoch 5 | iter 1185 step 1185 | loss train: 2.315, val: 2.915 | iter time: 1509.84 ms (step)
+Epoch 5 | iter 1190 step 1190 | loss train: 2.221, val: 2.915 | iter time: 1510.74 ms (step)
+Epoch 5 | iter 1195 step 1195 | loss train: 2.195, val: 2.915 | iter time: 1509.32 ms (step)
+Epoch 5 | iter 1200 step 1200 | loss train: 2.296, val: 2.915 | iter time: 1509.39 ms (step)
+Validating ...
+compress the following sentence into embedding: 
+Length of encoded instruction (37) and eval.max_new_tokens (100) exceeds model.max_seq_length (128) used for training. Skipping example generation for efficiency. The model's supported context size (post-training) is 2048.
+iter 1200: val loss 2.9976, val time: 8284.25 ms
+Epoch 5 | iter 1205 step 1205 | loss train: 2.390, val: 2.998 | iter time: 1508.12 ms (step)
+Epoch 5 | iter 1210 step 1210 | loss train: 2.422, val: 2.998 | iter time: 1509.41 ms (step)
+Epoch 5 | iter 1215 step 1215 | loss train: 2.330, val: 2.998 | iter time: 1508.73 ms (step)
+Epoch 5 | iter 1220 step 1220 | loss train: 2.364, val: 2.998 | iter time: 1508.18 ms (step)
+Epoch 5 | iter 1225 step 1225 | loss train: 2.304, val: 2.998 | iter time: 1509.93 ms (step)
+Epoch 5 | iter 1230 step 1230 | loss train: 2.336, val: 2.998 | iter time: 1510.70 ms (step)
+Epoch 5 | iter 1235 step 1235 | loss train: 2.287, val: 2.998 | iter time: 1510.21 ms (step)
+Epoch 5 | iter 1240 step 1240 | loss train: 2.411, val: 2.998 | iter time: 1508.79 ms (step)
+Epoch 5 | iter 1245 step 1245 | loss train: 2.360, val: 2.998 | iter time: 1510.18 ms (step)
+Epoch 5 | iter 1250 step 1250 | loss train: 2.475, val: 2.998 | iter time: 1509.23 ms (step)
+Epoch 5 | iter 1255 step 1255 | loss train: 2.407, val: 2.998 | iter time: 1510.01 ms (step)
+Epoch 5 | iter 1260 step 1260 | loss train: 2.347, val: 2.998 | iter time: 1510.68 ms (step)
+Epoch 5 | iter 1265 step 1265 | loss train: 2.391, val: 2.998 | iter time: 1511.97 ms (step)
+Epoch 5 | iter 1270 step 1270 | loss train: 2.378, val: 2.998 | iter time: 1509.30 ms (step)
+Epoch 5 | iter 1275 step 1275 | loss train: 2.262, val: 2.998 | iter time: 1510.78 ms (step)
+Epoch 5 | iter 1280 step 1280 | loss train: 2.453, val: 2.998 | iter time: 1509.54 ms (step)
+Epoch 5 | iter 1285 step 1285 | loss train: 2.363, val: 2.998 | iter time: 1511.18 ms (step)
+Epoch 5 | iter 1290 step 1290 | loss train: 2.359, val: 2.998 | iter time: 1511.45 ms (step)
+Epoch 5 | iter 1295 step 1295 | loss train: 2.427, val: 2.998 | iter time: 1508.65 ms (step)
+Epoch 5 | iter 1300 step 1300 | loss train: 2.484, val: 2.998 | iter time: 1511.34 ms (step)
+Validating ...
+compress the following sentence into embedding: 
+Length of encoded instruction (37) and eval.max_new_tokens (100) exceeds model.max_seq_length (128) used for training. Skipping example generation for efficiency. The model's supported context size (post-training) is 2048.
+iter 1300: val loss 2.9582, val time: 8296.92 ms
+Epoch 5 | iter 1305 step 1305 | loss train: 2.375, val: 2.958 | iter time: 1508.39 ms (step)
+Epoch 5 | iter 1310 step 1310 | loss train: 2.404, val: 2.958 | iter time: 1508.56 ms (step)
+Epoch 5 | iter 1315 step 1315 | loss train: 2.441, val: 2.958 | iter time: 1509.53 ms (step)
+Epoch 5 | iter 1320 step 1320 | loss train: 2.378, val: 2.958 | iter time: 1509.62 ms (step)
+Epoch 5 | iter 1325 step 1325 | loss train: 2.348, val: 2.958 | iter time: 1508.01 ms (step)
+Epoch 5 | iter 1330 step 1330 | loss train: 2.361, val: 2.958 | iter time: 1509.72 ms (step)
+Epoch 5 | iter 1335 step 1335 | loss train: 2.408, val: 2.958 | iter time: 1510.69 ms (step)
+Epoch 5 | iter 1340 step 1340 | loss train: 2.435, val: 2.958 | iter time: 1509.73 ms (step)
+Epoch 5 | iter 1345 step 1345 | loss train: 2.354, val: 2.958 | iter time: 1510.87 ms (step)
+Epoch 5 | iter 1350 step 1350 | loss train: 2.396, val: 2.958 | iter time: 1508.30 ms (step)
+Epoch 5 | iter 1355 step 1355 | loss train: 2.383, val: 2.958 | iter time: 1511.39 ms (step)
+Epoch 5 | iter 1360 step 1360 | loss train: 2.347, val: 2.958 | iter time: 1510.25 ms (step)
+Epoch 5 | iter 1365 step 1365 | loss train: 2.367, val: 2.958 | iter time: 1510.43 ms (step)
+Epoch 5 | iter 1370 step 1370 | loss train: 2.426, val: 2.958 | iter time: 1509.98 ms (step)
+Epoch 5 | iter 1375 step 1375 | loss train: 2.448, val: 2.958 | iter time: 1507.79 ms (step)
+Epoch 5 | iter 1380 step 1380 | loss train: 2.401, val: 2.958 | iter time: 1477.53 ms (step)
+Epoch 6 | iter 1385 step 1385 | loss train: 1.926, val: 2.958 | iter time: 1512.38 ms (step)
+Epoch 6 | iter 1390 step 1390 | loss train: 1.889, val: 2.958 | iter time: 1510.61 ms (step)
+Epoch 6 | iter 1395 step 1395 | loss train: 1.844, val: 2.958 | iter time: 1509.61 ms (step)
+Epoch 6 | iter 1400 step 1400 | loss train: 1.875, val: 2.958 | iter time: 1510.15 ms (step)
+Validating ...
+compress the following sentence into embedding: 
+Length of encoded instruction (37) and eval.max_new_tokens (100) exceeds model.max_seq_length (128) used for training. Skipping example generation for efficiency. The model's supported context size (post-training) is 2048.
+iter 1400: val loss 3.0555, val time: 7990.41 ms
+Epoch 6 | iter 1405 step 1405 | loss train: 1.959, val: 3.055 | iter time: 1508.31 ms (step)
+Epoch 6 | iter 1410 step 1410 | loss train: 1.855, val: 3.055 | iter time: 1509.49 ms (step)
+Epoch 6 | iter 1415 step 1415 | loss train: 1.814, val: 3.055 | iter time: 1508.99 ms (step)
+Epoch 6 | iter 1420 step 1420 | loss train: 1.882, val: 3.055 | iter time: 1509.98 ms (step)
+Epoch 6 | iter 1425 step 1425 | loss train: 1.833, val: 3.055 | iter time: 1509.98 ms (step)
+Epoch 6 | iter 1430 step 1430 | loss train: 1.930, val: 3.055 | iter time: 1508.73 ms (step)
+Epoch 6 | iter 1435 step 1435 | loss train: 1.983, val: 3.055 | iter time: 1511.91 ms (step)
+Epoch 6 | iter 1440 step 1440 | loss train: 1.956, val: 3.055 | iter time: 1509.52 ms (step)
+Epoch 6 | iter 1445 step 1445 | loss train: 2.056, val: 3.055 | iter time: 1510.33 ms (step)
+Epoch 6 | iter 1450 step 1450 | loss train: 2.025, val: 3.055 | iter time: 1508.50 ms (step)
+Epoch 6 | iter 1455 step 1455 | loss train: 1.982, val: 3.055 | iter time: 1511.89 ms (step)
+Epoch 6 | iter 1460 step 1460 | loss train: 1.950, val: 3.055 | iter time: 1509.39 ms (step)
+Epoch 6 | iter 1465 step 1465 | loss train: 1.933, val: 3.055 | iter time: 1511.37 ms (step)
+Epoch 6 | iter 1470 step 1470 | loss train: 1.930, val: 3.055 | iter time: 1510.54 ms (step)
+Epoch 6 | iter 1475 step 1475 | loss train: 2.008, val: 3.055 | iter time: 1509.69 ms (step)
+Epoch 6 | iter 1480 step 1480 | loss train: 1.971, val: 3.055 | iter time: 1510.53 ms (step)
+Epoch 6 | iter 1485 step 1485 | loss train: 1.955, val: 3.055 | iter time: 1511.82 ms (step)
+Epoch 6 | iter 1490 step 1490 | loss train: 2.067, val: 3.055 | iter time: 1510.00 ms (step)
+Epoch 6 | iter 1495 step 1495 | loss train: 2.061, val: 3.055 | iter time: 1510.64 ms (step)
+Epoch 6 | iter 1500 step 1500 | loss train: 1.987, val: 3.055 | iter time: 1510.51 ms (step)
+Validating ...
+compress the following sentence into embedding: 
+Length of encoded instruction (37) and eval.max_new_tokens (100) exceeds model.max_seq_length (128) used for training. Skipping example generation for efficiency. The model's supported context size (post-training) is 2048.
+iter 1500: val loss 3.0427, val time: 8325.48 ms
+Epoch 6 | iter 1505 step 1505 | loss train: 2.028, val: 3.043 | iter time: 1508.41 ms (step)
+Epoch 6 | iter 1510 step 1510 | loss train: 2.021, val: 3.043 | iter time: 1511.65 ms (step)
+Epoch 6 | iter 1515 step 1515 | loss train: 1.946, val: 3.043 | iter time: 1508.78 ms (step)
+Epoch 6 | iter 1520 step 1520 | loss train: 2.074, val: 3.043 | iter time: 1510.02 ms (step)
+Epoch 6 | iter 1525 step 1525 | loss train: 1.969, val: 3.043 | iter time: 1511.24 ms (step)
+Epoch 6 | iter 1530 step 1530 | loss train: 1.979, val: 3.043 | iter time: 1510.08 ms (step)
+Epoch 6 | iter 1535 step 1535 | loss train: 2.040, val: 3.043 | iter time: 1509.16 ms (step)
+Epoch 6 | iter 1540 step 1540 | loss train: 2.032, val: 3.043 | iter time: 1510.65 ms (step)
+Epoch 6 | iter 1545 step 1545 | loss train: 1.954, val: 3.043 | iter time: 1508.38 ms (step)
+Epoch 6 | iter 1550 step 1550 | loss train: 2.101, val: 3.043 | iter time: 1509.12 ms (step)
+Epoch 6 | iter 1555 step 1555 | loss train: 2.088, val: 3.043 | iter time: 1508.83 ms (step)
+Epoch 6 | iter 1560 step 1560 | loss train: 2.036, val: 3.043 | iter time: 1509.63 ms (step)
+Epoch 6 | iter 1565 step 1565 | loss train: 2.043, val: 3.043 | iter time: 1509.26 ms (step)
+Epoch 6 | iter 1570 step 1570 | loss train: 1.981, val: 3.043 | iter time: 1511.49 ms (step)
+Epoch 6 | iter 1575 step 1575 | loss train: 2.058, val: 3.043 | iter time: 1508.79 ms (step)
+Epoch 6 | iter 1580 step 1580 | loss train: 2.070, val: 3.043 | iter time: 1510.71 ms (step)
+Epoch 6 | iter 1585 step 1585 | loss train: 2.072, val: 3.043 | iter time: 1508.62 ms (step)
+Epoch 6 | iter 1590 step 1590 | loss train: 2.023, val: 3.043 | iter time: 1508.65 ms (step)
+Epoch 6 | iter 1595 step 1595 | loss train: 2.028, val: 3.043 | iter time: 1510.18 ms (step)
+Epoch 6 | iter 1600 step 1600 | loss train: 2.159, val: 3.043 | iter time: 1510.20 ms (step)
+Validating ...
+compress the following sentence into embedding: 
+Length of encoded instruction (37) and eval.max_new_tokens (100) exceeds model.max_seq_length (128) used for training. Skipping example generation for efficiency. The model's supported context size (post-training) is 2048.
+iter 1600: val loss 3.0150, val time: 8020.12 ms
+Epoch 6 | iter 1605 step 1605 | loss train: 2.001, val: 3.015 | iter time: 1509.93 ms (step)
+Epoch 6 | iter 1610 step 1610 | loss train: 1.985, val: 3.015 | iter time: 1509.86 ms (step)
+Epoch 6 | iter 1615 step 1615 | loss train: 2.010, val: 3.015 | iter time: 1508.35 ms (step)
+Epoch 6 | iter 1620 step 1620 | loss train: 2.089, val: 3.015 | iter time: 1510.11 ms (step)
+Epoch 6 | iter 1625 step 1625 | loss train: 1.995, val: 3.015 | iter time: 1508.20 ms (step)
+Epoch 6 | iter 1630 step 1630 | loss train: 2.098, val: 3.015 | iter time: 1511.77 ms (step)
+Epoch 6 | iter 1635 step 1635 | loss train: 2.051, val: 3.015 | iter time: 1509.65 ms (step)
+Epoch 6 | iter 1640 step 1640 | loss train: 1.912, val: 3.015 | iter time: 1511.10 ms (step)
+Epoch 6 | iter 1645 step 1645 | loss train: 2.045, val: 3.015 | iter time: 1509.03 ms (step)
+Epoch 6 | iter 1650 step 1650 | loss train: 2.073, val: 3.015 | iter time: 1509.20 ms (step)
+Epoch 6 | iter 1655 step 1655 | loss train: 2.014, val: 3.015 | iter time: 1508.86 ms (step)
+Epoch 7 | iter 1660 step 1660 | loss train: 1.385, val: 3.015 | iter time: 1507.92 ms (step)
+Epoch 7 | iter 1665 step 1665 | loss train: 1.331, val: 3.015 | iter time: 1509.74 ms (step)
+Epoch 7 | iter 1670 step 1670 | loss train: 1.606, val: 3.015 | iter time: 1508.20 ms (step)
+Epoch 7 | iter 1675 step 1675 | loss train: 1.470, val: 3.015 | iter time: 1511.02 ms (step)
+Epoch 7 | iter 1680 step 1680 | loss train: 1.350, val: 3.015 | iter time: 1507.93 ms (step)
+Epoch 7 | iter 1685 step 1685 | loss train: 1.577, val: 3.015 | iter time: 1509.38 ms (step)
+Epoch 7 | iter 1690 step 1690 | loss train: 1.462, val: 3.015 | iter time: 1510.39 ms (step)
+Epoch 7 | iter 1695 step 1695 | loss train: 1.511, val: 3.015 | iter time: 1509.03 ms (step)
+Epoch 7 | iter 1700 step 1700 | loss train: 1.495, val: 3.015 | iter time: 1509.51 ms (step)
+Validating ...
+compress the following sentence into embedding: 
+Length of encoded instruction (37) and eval.max_new_tokens (100) exceeds model.max_seq_length (128) used for training. Skipping example generation for efficiency. The model's supported context size (post-training) is 2048.
+iter 1700: val loss 3.2024, val time: 8039.88 ms
+Epoch 7 | iter 1705 step 1705 | loss train: 1.513, val: 3.202 | iter time: 1509.56 ms (step)
+Epoch 7 | iter 1710 step 1710 | loss train: 1.443, val: 3.202 | iter time: 1509.55 ms (step)
+Epoch 7 | iter 1715 step 1715 | loss train: 1.549, val: 3.202 | iter time: 1509.22 ms (step)
+Epoch 7 | iter 1720 step 1720 | loss train: 1.523, val: 3.202 | iter time: 1508.76 ms (step)
+Epoch 7 | iter 1725 step 1725 | loss train: 1.525, val: 3.202 | iter time: 1510.00 ms (step)
+Epoch 7 | iter 1730 step 1730 | loss train: 1.450, val: 3.202 | iter time: 1508.52 ms (step)
+Epoch 7 | iter 1735 step 1735 | loss train: 1.607, val: 3.202 | iter time: 1510.65 ms (step)
+Epoch 7 | iter 1740 step 1740 | loss train: 1.522, val: 3.202 | iter time: 1508.36 ms (step)
+Epoch 7 | iter 1745 step 1745 | loss train: 1.568, val: 3.202 | iter time: 1508.88 ms (step)
+Epoch 7 | iter 1750 step 1750 | loss train: 1.551, val: 3.202 | iter time: 1510.04 ms (step)
+Epoch 7 | iter 1755 step 1755 | loss train: 1.528, val: 3.202 | iter time: 1509.85 ms (step)
+Epoch 7 | iter 1760 step 1760 | loss train: 1.511, val: 3.202 | iter time: 1510.48 ms (step)
+Epoch 7 | iter 1765 step 1765 | loss train: 1.573, val: 3.202 | iter time: 1509.05 ms (step)
+Epoch 7 | iter 1770 step 1770 | loss train: 1.480, val: 3.202 | iter time: 1508.03 ms (step)
+Epoch 7 | iter 1775 step 1775 | loss train: 1.497, val: 3.202 | iter time: 1509.80 ms (step)
+Epoch 7 | iter 1780 step 1780 | loss train: 1.532, val: 3.202 | iter time: 1510.07 ms (step)
+Epoch 7 | iter 1785 step 1785 | loss train: 1.571, val: 3.202 | iter time: 1508.61 ms (step)
+Epoch 7 | iter 1790 step 1790 | loss train: 1.401, val: 3.202 | iter time: 1510.91 ms (step)
+Epoch 7 | iter 1795 step 1795 | loss train: 1.536, val: 3.202 | iter time: 1510.18 ms (step)
+Epoch 7 | iter 1800 step 1800 | loss train: 1.553, val: 3.202 | iter time: 1511.70 ms (step)
+Validating ...
+compress the following sentence into embedding: 
+Length of encoded instruction (37) and eval.max_new_tokens (100) exceeds model.max_seq_length (128) used for training. Skipping example generation for efficiency. The model's supported context size (post-training) is 2048.
+iter 1800: val loss 3.2171, val time: 8258.15 ms
+Epoch 7 | iter 1805 step 1805 | loss train: 1.507, val: 3.217 | iter time: 1507.95 ms (step)
+Epoch 7 | iter 1810 step 1810 | loss train: 1.450, val: 3.217 | iter time: 1509.41 ms (step)
+Epoch 7 | iter 1815 step 1815 | loss train: 1.572, val: 3.217 | iter time: 1509.64 ms (step)
+Epoch 7 | iter 1820 step 1820 | loss train: 1.499, val: 3.217 | iter time: 1508.58 ms (step)
+Epoch 7 | iter 1825 step 1825 | loss train: 1.428, val: 3.217 | iter time: 1509.06 ms (step)
+Epoch 7 | iter 1830 step 1830 | loss train: 1.519, val: 3.217 | iter time: 1510.30 ms (step)
+Epoch 7 | iter 1835 step 1835 | loss train: 1.492, val: 3.217 | iter time: 1508.96 ms (step)
+Epoch 7 | iter 1840 step 1840 | loss train: 1.558, val: 3.217 | iter time: 1510.50 ms (step)
+Epoch 7 | iter 1845 step 1845 | loss train: 1.519, val: 3.217 | iter time: 1509.56 ms (step)
+Epoch 7 | iter 1850 step 1850 | loss train: 1.540, val: 3.217 | iter time: 1510.75 ms (step)
+Epoch 7 | iter 1855 step 1855 | loss train: 1.569, val: 3.217 | iter time: 1511.23 ms (step)
+Epoch 7 | iter 1860 step 1860 | loss train: 1.438, val: 3.217 | iter time: 1510.72 ms (step)
+Epoch 7 | iter 1865 step 1865 | loss train: 1.624, val: 3.217 | iter time: 1510.13 ms (step)
+Epoch 7 | iter 1870 step 1870 | loss train: 1.657, val: 3.217 | iter time: 1511.21 ms (step)
+Epoch 7 | iter 1875 step 1875 | loss train: 1.614, val: 3.217 | iter time: 1508.69 ms (step)
+Epoch 7 | iter 1880 step 1880 | loss train: 1.503, val: 3.217 | iter time: 1510.76 ms (step)
+Epoch 7 | iter 1885 step 1885 | loss train: 1.552, val: 3.217 | iter time: 1510.41 ms (step)
+Epoch 7 | iter 1890 step 1890 | loss train: 1.552, val: 3.217 | iter time: 1509.59 ms (step)
+Epoch 7 | iter 1895 step 1895 | loss train: 1.595, val: 3.217 | iter time: 1510.18 ms (step)
+Epoch 7 | iter 1900 step 1900 | loss train: 1.461, val: 3.217 | iter time: 1510.56 ms (step)
+Validating ...
+compress the following sentence into embedding: 
+Length of encoded instruction (37) and eval.max_new_tokens (100) exceeds model.max_seq_length (128) used for training. Skipping example generation for efficiency. The model's supported context size (post-training) is 2048.
+iter 1900: val loss 3.1821, val time: 8199.40 ms
+Epoch 7 | iter 1905 step 1905 | loss train: 1.539, val: 3.182 | iter time: 1508.02 ms (step)
+Epoch 7 | iter 1910 step 1910 | loss train: 1.656, val: 3.182 | iter time: 1508.42 ms (step)
+Epoch 7 | iter 1915 step 1915 | loss train: 1.505, val: 3.182 | iter time: 1509.79 ms (step)
+Epoch 7 | iter 1920 step 1920 | loss train: 1.513, val: 3.182 | iter time: 1508.50 ms (step)
+Epoch 7 | iter 1925 step 1925 | loss train: 1.582, val: 3.182 | iter time: 1510.71 ms (step)
+Epoch 7 | iter 1930 step 1930 | loss train: 1.516, val: 3.182 | iter time: 1507.56 ms (step)
+Epoch 8 | iter 1935 step 1935 | loss train: 1.079, val: 3.182 | iter time: 1506.36 ms (step)
+Epoch 8 | iter 1940 step 1940 | loss train: 1.064, val: 3.182 | iter time: 1507.50 ms (step)
+Epoch 8 | iter 1945 step 1945 | loss train: 1.188, val: 3.182 | iter time: 1508.46 ms (step)
+Epoch 8 | iter 1950 step 1950 | loss train: 1.059, val: 3.182 | iter time: 1509.06 ms (step)
+Epoch 8 | iter 1955 step 1955 | loss train: 1.025, val: 3.182 | iter time: 1509.40 ms (step)
+Epoch 8 | iter 1960 step 1960 | loss train: 1.063, val: 3.182 | iter time: 1511.26 ms (step)
+Epoch 8 | iter 1965 step 1965 | loss train: 1.164, val: 3.182 | iter time: 1509.43 ms (step)
+Epoch 8 | iter 1970 step 1970 | loss train: 0.975, val: 3.182 | iter time: 1509.86 ms (step)
+Epoch 8 | iter 1975 step 1975 | loss train: 1.005, val: 3.182 | iter time: 1510.43 ms (step)
+Epoch 8 | iter 1980 step 1980 | loss train: 1.018, val: 3.182 | iter time: 1508.59 ms (step)
+Epoch 8 | iter 1985 step 1985 | loss train: 0.932, val: 3.182 | iter time: 1509.55 ms (step)
+Epoch 8 | iter 1990 step 1990 | loss train: 1.123, val: 3.182 | iter time: 1509.63 ms (step)
+Epoch 8 | iter 1995 step 1995 | loss train: 1.016, val: 3.182 | iter time: 1511.48 ms (step)
+Epoch 8 | iter 2000 step 2000 | loss train: 1.070, val: 3.182 | iter time: 1509.71 ms (step)
+Validating ...
+compress the following sentence into embedding: 
+Length of encoded instruction (37) and eval.max_new_tokens (100) exceeds model.max_seq_length (128) used for training. Skipping example generation for efficiency. The model's supported context size (post-training) is 2048.
+iter 2000: val loss 3.3665, val time: 8210.76 ms
+Saving checkpoint to '/data/user_data/jingyuah/LLARA/checkpoints/litgpt_fineweb_74k_pythia_1b_warmup_0.1/step-002000'
+Epoch 8 | iter 2005 step 2005 | loss train: 0.997, val: 3.367 | iter time: 1499.62 ms (step)
+Epoch 8 | iter 2010 step 2010 | loss train: 1.017, val: 3.367 | iter time: 1498.26 ms (step)
+Epoch 8 | iter 2015 step 2015 | loss train: 1.069, val: 3.367 | iter time: 1497.91 ms (step)
+Epoch 8 | iter 2020 step 2020 | loss train: 1.014, val: 3.367 | iter time: 1500.92 ms (step)
+Epoch 8 | iter 2025 step 2025 | loss train: 0.990, val: 3.367 | iter time: 1500.29 ms (step)
+Epoch 8 | iter 2030 step 2030 | loss train: 1.043, val: 3.367 | iter time: 1502.62 ms (step)
+Epoch 8 | iter 2035 step 2035 | loss train: 1.071, val: 3.367 | iter time: 1504.56 ms (step)
+Epoch 8 | iter 2040 step 2040 | loss train: 1.106, val: 3.367 | iter time: 1505.66 ms (step)
+Epoch 8 | iter 2045 step 2045 | loss train: 0.993, val: 3.367 | iter time: 1505.80 ms (step)
+Epoch 8 | iter 2050 step 2050 | loss train: 1.081, val: 3.367 | iter time: 1508.14 ms (step)
+Epoch 8 | iter 2055 step 2055 | loss train: 1.091, val: 3.367 | iter time: 1507.21 ms (step)
+Epoch 8 | iter 2060 step 2060 | loss train: 1.108, val: 3.367 | iter time: 1505.92 ms (step)
+Epoch 8 | iter 2065 step 2065 | loss train: 1.114, val: 3.367 | iter time: 1507.50 ms (step)
+Epoch 8 | iter 2070 step 2070 | loss train: 0.975, val: 3.367 | iter time: 1506.51 ms (step)
+Epoch 8 | iter 2075 step 2075 | loss train: 1.203, val: 3.367 | iter time: 1507.33 ms (step)
+Epoch 8 | iter 2080 step 2080 | loss train: 0.998, val: 3.367 | iter time: 1508.17 ms (step)
+Epoch 8 | iter 2085 step 2085 | loss train: 1.001, val: 3.367 | iter time: 1509.55 ms (step)
+Epoch 8 | iter 2090 step 2090 | loss train: 1.083, val: 3.367 | iter time: 1507.51 ms (step)
+Epoch 8 | iter 2095 step 2095 | loss train: 1.022, val: 3.367 | iter time: 1509.71 ms (step)
+Epoch 8 | iter 2100 step 2100 | loss train: 1.004, val: 3.367 | iter time: 1507.63 ms (step)
+Validating ...
+compress the following sentence into embedding: 
+Length of encoded instruction (37) and eval.max_new_tokens (100) exceeds model.max_seq_length (128) used for training. Skipping example generation for efficiency. The model's supported context size (post-training) is 2048.
+iter 2100: val loss 3.4330, val time: 8340.04 ms
+Epoch 8 | iter 2105 step 2105 | loss train: 1.083, val: 3.433 | iter time: 1507.40 ms (step)
+Epoch 8 | iter 2110 step 2110 | loss train: 1.013, val: 3.433 | iter time: 1506.57 ms (step)
+Epoch 8 | iter 2115 step 2115 | loss train: 1.066, val: 3.433 | iter time: 1507.24 ms (step)
+Epoch 8 | iter 2120 step 2120 | loss train: 1.072, val: 3.433 | iter time: 1509.06 ms (step)
+Epoch 8 | iter 2125 step 2125 | loss train: 1.074, val: 3.433 | iter time: 1510.79 ms (step)
+Epoch 8 | iter 2130 step 2130 | loss train: 1.034, val: 3.433 | iter time: 1510.99 ms (step)
+Epoch 8 | iter 2135 step 2135 | loss train: 1.131, val: 3.433 | iter time: 1509.42 ms (step)
+Epoch 8 | iter 2140 step 2140 | loss train: 0.970, val: 3.433 | iter time: 1509.46 ms (step)
+Epoch 8 | iter 2145 step 2145 | loss train: 1.112, val: 3.433 | iter time: 1510.35 ms (step)
+Epoch 8 | iter 2150 step 2150 | loss train: 1.121, val: 3.433 | iter time: 1510.13 ms (step)
+Epoch 8 | iter 2155 step 2155 | loss train: 1.070, val: 3.433 | iter time: 1509.90 ms (step)
+Epoch 8 | iter 2160 step 2160 | loss train: 1.069, val: 3.433 | iter time: 1513.10 ms (step)
+Epoch 8 | iter 2165 step 2165 | loss train: 1.046, val: 3.433 | iter time: 1508.97 ms (step)
+Epoch 8 | iter 2170 step 2170 | loss train: 1.076, val: 3.433 | iter time: 1510.50 ms (step)
+Epoch 8 | iter 2175 step 2175 | loss train: 1.101, val: 3.433 | iter time: 1510.06 ms (step)
+Epoch 8 | iter 2180 step 2180 | loss train: 0.958, val: 3.433 | iter time: 1509.12 ms (step)
+Epoch 8 | iter 2185 step 2185 | loss train: 1.119, val: 3.433 | iter time: 1510.63 ms (step)
+Epoch 8 | iter 2190 step 2190 | loss train: 0.964, val: 3.433 | iter time: 1508.85 ms (step)
+Epoch 8 | iter 2195 step 2195 | loss train: 1.007, val: 3.433 | iter time: 1511.29 ms (step)
+Epoch 8 | iter 2200 step 2200 | loss train: 1.096, val: 3.433 | iter time: 1508.91 ms (step)
+Validating ...
+compress the following sentence into embedding: 
+Length of encoded instruction (37) and eval.max_new_tokens (100) exceeds model.max_seq_length (128) used for training. Skipping example generation for efficiency. The model's supported context size (post-training) is 2048.
+iter 2200: val loss 3.4168, val time: 8089.32 ms
+Epoch 8 | iter 2205 step 2205 | loss train: 1.082, val: 3.417 | iter time: 1508.72 ms (step)
+Epoch 9 | iter 2210 step 2210 | loss train: 0.838, val: 3.417 | iter time: 1506.22 ms (step)
+Epoch 9 | iter 2215 step 2215 | loss train: 0.704, val: 3.417 | iter time: 1506.41 ms (step)
+Epoch 9 | iter 2220 step 2220 | loss train: 0.665, val: 3.417 | iter time: 1508.90 ms (step)
+Epoch 9 | iter 2225 step 2225 | loss train: 0.673, val: 3.417 | iter time: 1508.54 ms (step)
+Epoch 9 | iter 2230 step 2230 | loss train: 0.688, val: 3.417 | iter time: 1510.61 ms (step)
+Epoch 9 | iter 2235 step 2235 | loss train: 0.600, val: 3.417 | iter time: 1509.69 ms (step)
+Epoch 9 | iter 2240 step 2240 | loss train: 0.624, val: 3.417 | iter time: 1509.59 ms (step)
+Epoch 9 | iter 2245 step 2245 | loss train: 0.680, val: 3.417 | iter time: 1509.99 ms (step)
+Epoch 9 | iter 2250 step 2250 | loss train: 0.703, val: 3.417 | iter time: 1508.94 ms (step)
+Epoch 9 | iter 2255 step 2255 | loss train: 0.704, val: 3.417 | iter time: 1510.19 ms (step)
+Epoch 9 | iter 2260 step 2260 | loss train: 0.619, val: 3.417 | iter time: 1507.81 ms (step)
+Epoch 9 | iter 2265 step 2265 | loss train: 0.719, val: 3.417 | iter time: 1509.28 ms (step)
+Epoch 9 | iter 2270 step 2270 | loss train: 0.606, val: 3.417 | iter time: 1509.65 ms (step)
+Epoch 9 | iter 2275 step 2275 | loss train: 0.646, val: 3.417 | iter time: 1510.02 ms (step)
+Epoch 9 | iter 2280 step 2280 | loss train: 0.770, val: 3.417 | iter time: 1509.20 ms (step)
+Epoch 9 | iter 2285 step 2285 | loss train: 0.619, val: 3.417 | iter time: 1510.01 ms (step)
+Epoch 9 | iter 2290 step 2290 | loss train: 0.591, val: 3.417 | iter time: 1509.58 ms (step)
+Epoch 9 | iter 2295 step 2295 | loss train: 0.765, val: 3.417 | iter time: 1510.64 ms (step)
+Epoch 9 | iter 2300 step 2300 | loss train: 0.718, val: 3.417 | iter time: 1510.28 ms (step)
+Validating ...
+compress the following sentence into embedding: 
+Length of encoded instruction (37) and eval.max_new_tokens (100) exceeds model.max_seq_length (128) used for training. Skipping example generation for efficiency. The model's supported context size (post-training) is 2048.
+iter 2300: val loss 3.6730, val time: 8300.37 ms
+Epoch 9 | iter 2305 step 2305 | loss train: 0.765, val: 3.673 | iter time: 1507.67 ms (step)
+Epoch 9 | iter 2310 step 2310 | loss train: 0.747, val: 3.673 | iter time: 1507.69 ms (step)
+Epoch 9 | iter 2315 step 2315 | loss train: 0.658, val: 3.673 | iter time: 1508.82 ms (step)
+Epoch 9 | iter 2320 step 2320 | loss train: 0.640, val: 3.673 | iter time: 1508.87 ms (step)
+Epoch 9 | iter 2325 step 2325 | loss train: 0.583, val: 3.673 | iter time: 1507.81 ms (step)
+Epoch 9 | iter 2330 step 2330 | loss train: 0.655, val: 3.673 | iter time: 1508.57 ms (step)
+Epoch 9 | iter 2335 step 2335 | loss train: 0.589, val: 3.673 | iter time: 1510.16 ms (step)
+Epoch 9 | iter 2340 step 2340 | loss train: 0.617, val: 3.673 | iter time: 1509.49 ms (step)
+Epoch 9 | iter 2345 step 2345 | loss train: 0.698, val: 3.673 | iter time: 1510.44 ms (step)
+Epoch 9 | iter 2350 step 2350 | loss train: 0.692, val: 3.673 | iter time: 1508.46 ms (step)
+Epoch 9 | iter 2355 step 2355 | loss train: 0.615, val: 3.673 | iter time: 1510.15 ms (step)
+Epoch 9 | iter 2360 step 2360 | loss train: 0.657, val: 3.673 | iter time: 1508.71 ms (step)
+Epoch 9 | iter 2365 step 2365 | loss train: 0.788, val: 3.673 | iter time: 1510.87 ms (step)
+Epoch 9 | iter 2370 step 2370 | loss train: 0.727, val: 3.673 | iter time: 1510.84 ms (step)
+Epoch 9 | iter 2375 step 2375 | loss train: 0.552, val: 3.673 | iter time: 1509.28 ms (step)
+Epoch 9 | iter 2380 step 2380 | loss train: 0.659, val: 3.673 | iter time: 1509.04 ms (step)
+Epoch 9 | iter 2385 step 2385 | loss train: 0.613, val: 3.673 | iter time: 1509.68 ms (step)
+Epoch 9 | iter 2390 step 2390 | loss train: 0.656, val: 3.673 | iter time: 1510.24 ms (step)
+Epoch 9 | iter 2395 step 2395 | loss train: 0.660, val: 3.673 | iter time: 1510.15 ms (step)
+Epoch 9 | iter 2400 step 2400 | loss train: 0.649, val: 3.673 | iter time: 1508.75 ms (step)
+Validating ...
+compress the following sentence into embedding: 
+Length of encoded instruction (37) and eval.max_new_tokens (100) exceeds model.max_seq_length (128) used for training. Skipping example generation for efficiency. The model's supported context size (post-training) is 2048.
+iter 2400: val loss 3.6350, val time: 8090.43 ms
+Epoch 9 | iter 2405 step 2405 | loss train: 0.655, val: 3.635 | iter time: 1509.08 ms (step)
+Epoch 9 | iter 2410 step 2410 | loss train: 0.656, val: 3.635 | iter time: 1506.72 ms (step)
+Epoch 9 | iter 2415 step 2415 | loss train: 0.582, val: 3.635 | iter time: 1507.87 ms (step)
+Epoch 9 | iter 2420 step 2420 | loss train: 0.714, val: 3.635 | iter time: 1510.96 ms (step)
+Epoch 9 | iter 2425 step 2425 | loss train: 0.731, val: 3.635 | iter time: 1509.22 ms (step)
+Epoch 9 | iter 2430 step 2430 | loss train: 0.539, val: 3.635 | iter time: 1509.59 ms (step)
+Epoch 9 | iter 2435 step 2435 | loss train: 0.624, val: 3.635 | iter time: 1510.55 ms (step)
+Epoch 9 | iter 2440 step 2440 | loss train: 0.598, val: 3.635 | iter time: 1508.97 ms (step)
+Epoch 9 | iter 2445 step 2445 | loss train: 0.732, val: 3.635 | iter time: 1510.96 ms (step)
+Epoch 9 | iter 2450 step 2450 | loss train: 0.657, val: 3.635 | iter time: 1508.17 ms (step)
+Epoch 9 | iter 2455 step 2455 | loss train: 0.705, val: 3.635 | iter time: 1510.42 ms (step)
+Epoch 9 | iter 2460 step 2460 | loss train: 0.703, val: 3.635 | iter time: 1510.49 ms (step)
+Epoch 9 | iter 2465 step 2465 | loss train: 0.656, val: 3.635 | iter time: 1510.63 ms (step)
+Epoch 9 | iter 2470 step 2470 | loss train: 0.670, val: 3.635 | iter time: 1511.08 ms (step)
+Epoch 9 | iter 2475 step 2475 | loss train: 0.576, val: 3.635 | iter time: 1509.01 ms (step)
+Epoch 9 | iter 2480 step 2480 | loss train: 0.672, val: 3.635 | iter time: 1509.47 ms (step)
+Epoch 10 | iter 2485 step 2485 | loss train: 0.381, val: 3.635 | iter time: 4046.33 ms (step)
+Epoch 10 | iter 2490 step 2490 | loss train: 0.485, val: 3.635 | iter time: 1508.75 ms (step)
+Epoch 10 | iter 2495 step 2495 | loss train: 0.455, val: 3.635 | iter time: 1508.65 ms (step)
+Epoch 10 | iter 2500 step 2500 | loss train: 0.371, val: 3.635 | iter time: 1508.65 ms (step)
+Validating ...
+compress the following sentence into embedding: 
+Length of encoded instruction (37) and eval.max_new_tokens (100) exceeds model.max_seq_length (128) used for training. Skipping example generation for efficiency. The model's supported context size (post-training) is 2048.
+iter 2500: val loss 3.9243, val time: 8209.09 ms
+Epoch 10 | iter 2505 step 2505 | loss train: 0.412, val: 3.924 | iter time: 1507.99 ms (step)
+Epoch 10 | iter 2510 step 2510 | loss train: 0.521, val: 3.924 | iter time: 1507.99 ms (step)
+Epoch 10 | iter 2515 step 2515 | loss train: 0.387, val: 3.924 | iter time: 1506.35 ms (step)
+Epoch 10 | iter 2520 step 2520 | loss train: 0.498, val: 3.924 | iter time: 1508.16 ms (step)
+Epoch 10 | iter 2525 step 2525 | loss train: 0.445, val: 3.924 | iter time: 1509.83 ms (step)
+Epoch 10 | iter 2530 step 2530 | loss train: 0.451, val: 3.924 | iter time: 1509.53 ms (step)
+Epoch 10 | iter 2535 step 2535 | loss train: 0.444, val: 3.924 | iter time: 1509.95 ms (step)
+Epoch 10 | iter 2540 step 2540 | loss train: 0.474, val: 3.924 | iter time: 1511.01 ms (step)
+Epoch 10 | iter 2545 step 2545 | loss train: 0.422, val: 3.924 | iter time: 1509.13 ms (step)
+Epoch 10 | iter 2550 step 2550 | loss train: 0.384, val: 3.924 | iter time: 1510.10 ms (step)
+Epoch 10 | iter 2555 step 2555 | loss train: 0.371, val: 3.924 | iter time: 1510.42 ms (step)
+Epoch 10 | iter 2560 step 2560 | loss train: 0.436, val: 3.924 | iter time: 1509.91 ms (step)
+Epoch 10 | iter 2565 step 2565 | loss train: 0.452, val: 3.924 | iter time: 1509.87 ms (step)
+Epoch 10 | iter 2570 step 2570 | loss train: 0.435, val: 3.924 | iter time: 1510.54 ms (step)
+Epoch 10 | iter 2575 step 2575 | loss train: 0.459, val: 3.924 | iter time: 1507.92 ms (step)
+Epoch 10 | iter 2580 step 2580 | loss train: 0.482, val: 3.924 | iter time: 1510.06 ms (step)
+Epoch 10 | iter 2585 step 2585 | loss train: 0.435, val: 3.924 | iter time: 1509.52 ms (step)
+Epoch 10 | iter 2590 step 2590 | loss train: 0.412, val: 3.924 | iter time: 1509.87 ms (step)
+Epoch 10 | iter 2595 step 2595 | loss train: 0.466, val: 3.924 | iter time: 1510.74 ms (step)
+Epoch 10 | iter 2600 step 2600 | loss train: 0.446, val: 3.924 | iter time: 1508.69 ms (step)
+Validating ...
+compress the following sentence into embedding: 
+Length of encoded instruction (37) and eval.max_new_tokens (100) exceeds model.max_seq_length (128) used for training. Skipping example generation for efficiency. The model's supported context size (post-training) is 2048.
+iter 2600: val loss 3.9549, val time: 8194.51 ms
+Epoch 10 | iter 2605 step 2605 | loss train: 0.545, val: 3.955 | iter time: 1507.40 ms (step)
+Epoch 10 | iter 2610 step 2610 | loss train: 0.460, val: 3.955 | iter time: 1508.18 ms (step)
+Epoch 10 | iter 2615 step 2615 | loss train: 0.495, val: 3.955 | iter time: 1508.75 ms (step)
+Epoch 10 | iter 2620 step 2620 | loss train: 0.432, val: 3.955 | iter time: 1509.84 ms (step)
+Epoch 10 | iter 2625 step 2625 | loss train: 0.436, val: 3.955 | iter time: 1509.44 ms (step)
+Epoch 10 | iter 2630 step 2630 | loss train: 0.495, val: 3.955 | iter time: 1509.12 ms (step)
+Epoch 10 | iter 2635 step 2635 | loss train: 0.427, val: 3.955 | iter time: 1509.17 ms (step)
+Epoch 10 | iter 2640 step 2640 | loss train: 0.488, val: 3.955 | iter time: 1508.39 ms (step)
+Epoch 10 | iter 2645 step 2645 | loss train: 0.475, val: 3.955 | iter time: 1510.45 ms (step)
+Epoch 10 | iter 2650 step 2650 | loss train: 0.455, val: 3.955 | iter time: 1510.36 ms (step)
+Epoch 10 | iter 2655 step 2655 | loss train: 0.449, val: 3.955 | iter time: 1509.65 ms (step)
+Epoch 10 | iter 2660 step 2660 | loss train: 0.388, val: 3.955 | iter time: 1510.83 ms (step)
+Epoch 10 | iter 2665 step 2665 | loss train: 0.472, val: 3.955 | iter time: 1509.02 ms (step)
+Epoch 10 | iter 2670 step 2670 | loss train: 0.446, val: 3.955 | iter time: 1509.20 ms (step)
+Epoch 10 | iter 2675 step 2675 | loss train: 0.443, val: 3.955 | iter time: 1511.34 ms (step)
+Epoch 10 | iter 2680 step 2680 | loss train: 0.380, val: 3.955 | iter time: 1509.57 ms (step)
+Epoch 10 | iter 2685 step 2685 | loss train: 0.386, val: 3.955 | iter time: 1511.61 ms (step)
+Epoch 10 | iter 2690 step 2690 | loss train: 0.389, val: 3.955 | iter time: 1509.44 ms (step)
+Epoch 10 | iter 2695 step 2695 | loss train: 0.485, val: 3.955 | iter time: 1509.36 ms (step)
+Epoch 10 | iter 2700 step 2700 | loss train: 0.465, val: 3.955 | iter time: 1510.50 ms (step)
+Validating ...
+compress the following sentence into embedding: 
+Length of encoded instruction (37) and eval.max_new_tokens (100) exceeds model.max_seq_length (128) used for training. Skipping example generation for efficiency. The model's supported context size (post-training) is 2048.
+iter 2700: val loss 3.9279, val time: 8053.64 ms
+Epoch 10 | iter 2705 step 2705 | loss train: 0.415, val: 3.928 | iter time: 1507.08 ms (step)
+Epoch 10 | iter 2710 step 2710 | loss train: 0.541, val: 3.928 | iter time: 1508.13 ms (step)
+Epoch 10 | iter 2715 step 2715 | loss train: 0.473, val: 3.928 | iter time: 1508.56 ms (step)
+Epoch 10 | iter 2720 step 2720 | loss train: 0.517, val: 3.928 | iter time: 1509.39 ms (step)
+Epoch 10 | iter 2725 step 2725 | loss train: 0.518, val: 3.928 | iter time: 1508.91 ms (step)
+Epoch 10 | iter 2730 step 2730 | loss train: 0.435, val: 3.928 | iter time: 1653.74 ms (step)
+Epoch 10 | iter 2735 step 2735 | loss train: 0.487, val: 3.928 | iter time: 1509.87 ms (step)
+Epoch 10 | iter 2740 step 2740 | loss train: 0.477, val: 3.928 | iter time: 1509.38 ms (step)
+Epoch 10 | iter 2745 step 2745 | loss train: 0.359, val: 3.928 | iter time: 1509.60 ms (step)
+Epoch 10 | iter 2750 step 2750 | loss train: 0.380, val: 3.928 | iter time: 1508.28 ms (step)
+Epoch 10 | iter 2755 step 2755 | loss train: 0.470, val: 3.928 | iter time: 1510.11 ms (step)
+Epoch 10 | iter 2760 step 2760 | loss train: 0.368, val: 3.928 | iter time: 1477.09 ms (step)
+
+| ------------------------------------------------------
+| Token Counts
+| - Input Tokens              :  47052841
+| - Tokens w/ Prompt          :  45217280
+| - Total Tokens (w/ Padding) :  45217280
+| -----------------------------------------------------
+| Performance
+| - Training Time             :  4710.53 s
+| - Tok/sec                   :  9599.19 tok/s
+| -----------------------------------------------------
+| Memory Usage                                                                 
+| - Memory Used               :  25.33 GB                                        
+-------------------------------------------------------
+
+Validating ...
+Final evaluation | val loss: 3.931 | val ppl: 50.968
+[1;34mwandb[0m: 🚀 View run [33mdeft-leaf-6[0m at: [34mhttps://wandb.ai/jingyuanhe1222/finetune-pythia-1b/runs/www30onc[0m
